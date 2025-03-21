@@ -1,10 +1,8 @@
-const express = require("express");
-const { getFollowingPosts } = require("../controllers/postController");
+const express = require('express');
+
 
 const router = express.Router();
-
-
-router.get("/following/:userId", getFollowingPosts); // Fetch posts from followed users
-
+const { getFollowingPosts } = require('../controllers/postController');
+router.get('/following/:userId', getFollowingPosts);
 
 module.exports = router;
