@@ -1,18 +1,42 @@
-const Post=require("../models/Post");
-const User=require("../models/User");
+const mongoose = require("mongoose");
+const Post = require("../models/Posts");
+const User = require("../models/User");
 
-exports.getFollowingPosts = async (req, res) => {
+const getFollowingPosts = async (req, res) => {
+  try {
+    console.log("Received userId from request:", req.params.userId);
+    console.log("🛠 Type of received userId:", typeof req.params.userId);
+
+    // Ensure Mongoose correctly converts the string ID to ObjectId
+    let userId;
     try {
-      const user = await User.findById(req.params.userId);
-      if (!user) return res.status(404).json({ error: "User not found" });
-  
-      // Get posts from users in the 'following' list
-      const posts = await Post.find({ userId: { $in: user.following } })
-        .populate("userId", "username profilePic location") // Include user details
-        .sort({ createdAt: -1 });//sort by newest first
-  
-      res.json(posts);
+      userId = new mongoose.Types.ObjectId(req.params.userId);
     } catch (error) {
-      res.status(500).json({ error: "Failed to fetch following posts" });
+      console.log("Invalid ObjectId format");
+      return res.status(400).json({ message: "Invalid userId format" });
     }
-  };
+
+    console.log("🔄 Converted userId to ObjectId:", userId);
+
+    const user = await User.findOne({ _id: userId });
+
+    if (!user) {
+      console.log(" User not found in MongoDB");
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    console.log(" User found:", user);
+
+    // Fetch posts from users that the logged-in user follows
+    const posts = await Post.find({ userId: { $in: user.following } })
+      .populate("userId", "username profilePic location")
+      .sort({ createdAt: -1 });
+
+    res.status(200).json(posts);
+  } catch (err) {
+    console.error(" Server Error:", err);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+
+module.exports = { getFollowingPosts };
