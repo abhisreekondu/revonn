@@ -4,7 +4,7 @@ import { FavoriteBorder, ChatBubbleOutline, Send, MoreVert } from "@mui/icons-ma
 
 const PostCard = ({ post }) => {
   return (
-    <Card sx={{ width: '100%', marginBottom: 3, borderRadius: 3, boxShadow: 3 }}>
+    <Card sx={{ width: '100%', marginBottom: 1 }}>
       {/* User Info */}
       <CardContent sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center" }}>
@@ -34,12 +34,11 @@ const PostCard = ({ post }) => {
       <CardContent sx={{ paddingBottom: 0 }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
           {/* Caption */}
-          <Typography variant="body2" fontWeight="bold" sx={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap' }}>
-            {post.userId.username}{" "}
+   
             <Typography variant="body2" component="span" color="text.secondary" sx={{ wordWrap: 'break-word' }}>
               {post.caption}
             </Typography>
-          </Typography>
+         
 
           {/* Icons */}
           <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
