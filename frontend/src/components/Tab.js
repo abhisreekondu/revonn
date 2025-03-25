@@ -19,6 +19,12 @@ const TabNavigation = () => {
         textColor="primary"
         centered
         sx={{
+            position:"fixed",
+            top: 0,
+            left: 0,
+            width: '100%',
+            backgroundColor: 'white',
+          marginTop:'12%',
           borderBottom: 1,
           borderColor: 'divider',
         }}
@@ -29,7 +35,7 @@ const TabNavigation = () => {
       </Tabs>
 
       {/* Content Based on Selected Tab */}
-      <Box sx={{ padding: 2 }}>
+      <Box sx={{    marginTop:'25%', padding: 2 }}>
         {value === 0 && <Community />} 
         {value === 1 && <div>Explore Content</div>}
         {value === 2 && <div>Reels Content</div>}
