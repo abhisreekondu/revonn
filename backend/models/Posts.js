@@ -4,7 +4,7 @@ const PostSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   username: { type: String, required: true },
   profilePic: { type: String, default: "" },
-  location: { type: String, required: true }, // Store user's location in the post
+  location: { type: String, required: true }, 
   imageUrl: { type: String, required: true },
   caption: { type: String, required: true },
   likes: { type: Number, default: 0 },

@@ -7,7 +7,7 @@ const UserSchema=new mongoose.Schema(
     password: { type: String, required: true },
     profilePic: { type: String, default: "" },
     location: { type: String, required: true }, 
-    following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], // Users this user follows
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], 
   }, { timestamps: true }
 )
 

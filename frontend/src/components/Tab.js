@@ -15,7 +15,6 @@ const TabNavigation = () => {
       <Tabs
         value={value}
         onChange={handleChange}
-        aria-label="basic tabs example"
         indicatorColor="primary"
         textColor="primary"
         centered
@@ -31,7 +30,7 @@ const TabNavigation = () => {
 
       {/* Content Based on Selected Tab */}
       <Box sx={{ padding: 2 }}>
-        {value === 0 && <Community />} {/* Render Community when Following tab is selected */}
+        {value === 0 && <Community />} 
         {value === 1 && <div>Explore Content</div>}
         {value === 2 && <div>Reels Content</div>}
       </Box>
