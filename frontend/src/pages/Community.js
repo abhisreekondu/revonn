@@ -7,13 +7,13 @@ const Community = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/posts/following/660f6c1b3a4a5b0012345671")
+    axios.get("http://localhost:5000/revonn/following/660f6c1b3a4a5b0012345673")
       .then((res) => setPosts(res.data))
       .catch((err) => console.error("AxiosError", err));
   }, []);
 
   return (
-    <Container maxWidth="lg"> {/* Change maxWidth to lg or remove it for full width */}
+    <Container maxWidth="lg">
       {posts.length === 0 ? (
         <Typography>No posts from followed users.</Typography>
       ) : (
