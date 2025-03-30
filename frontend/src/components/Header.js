@@ -13,7 +13,7 @@ const Header = () => {
         backgroundColor: 'white'
         }}>
         <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
-  Connect
+  CONNECT
 </Typography>
         <Box sx={{display: 'flex', alignItems: 'center' }}>
           <IconButton edge="end">

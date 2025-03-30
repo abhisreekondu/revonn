@@ -1,8 +1,7 @@
 const express = require('express');
-
-
 const router = express.Router();
-const { getfollwingreels } = require('../controllers/getfollowingreelsController');
-router.get('/:userId', getfollwingreels);
+const { getfollowingreels } = require('../controllers/getfollowingreelsController'); // Fixed typo here
+
+router.get('/:userId', getfollowingreels); 
 
 module.exports = router;
