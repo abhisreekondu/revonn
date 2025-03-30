@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Tabs, Tab, Box } from '@mui/material';
-import Community from '../pages/Community';  
-import Explore from '../pages/Explore';  
+import Following from '../pages/Following';
+import Explore from '../pages/Explore';
+import Reels from "../pages/Reels";
+import SearchUsers from './search/SearchUsers'; // Assuming SearchUsers component is in the components folder
+
 const TabNavigation = () => {
   const [value, setValue] = useState(0);
 
@@ -10,8 +13,7 @@ const TabNavigation = () => {
   };
 
   return (
-    <Box sx={{ width: '100%' }}
-    >
+    <Box sx={{ width: '100%' }}>
       {/* Tabs Component */}
       <Tabs
         value={value}
@@ -19,7 +21,6 @@ const TabNavigation = () => {
         indicatorColor="primary"
         textColor="primary"
         centered
-
       >
         <Tab label="Following" sx={{ color: 'red' }} />
         <Tab label="Explore" sx={{ color: 'red' }} />
@@ -27,10 +28,17 @@ const TabNavigation = () => {
       </Tabs>
 
       {/* Content Based on Selected Tab */}
-      <Box >
-        {value === 0 && <Community />} 
-        {value === 1 && <Explore/>}
-        {value === 2 && <div>Reels Content</div>}
+      <Box>
+        {value === 0 && <Following />} 
+        
+        {value === 1 && (
+          <Box>
+            <SearchUsers /> 
+            <Explore />    
+          </Box>
+        )}
+        
+        {value === 2 && <Reels />}  
       </Box>
     </Box>
   );
