@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tabs, Tab, Box } from '@mui/material';
 import Community from '../pages/Community';  
-
+import Explore from '../pages/Explore';  
 const TabNavigation = () => {
   const [value, setValue] = useState(0);
 
@@ -10,7 +10,8 @@ const TabNavigation = () => {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%' }}
+    >
       {/* Tabs Component */}
       <Tabs
         value={value}
@@ -18,16 +19,7 @@ const TabNavigation = () => {
         indicatorColor="primary"
         textColor="primary"
         centered
-        sx={{
-            position:"fixed",
-            top: 0,
-            left: 0,
-            width: '100%',
-            backgroundColor: 'white',
-          marginTop:'12%',
-          borderBottom: 1,
-          borderColor: 'divider',
-        }}
+
       >
         <Tab label="Following" sx={{ color: 'red' }} />
         <Tab label="Explore" sx={{ color: 'red' }} />
@@ -35,9 +27,9 @@ const TabNavigation = () => {
       </Tabs>
 
       {/* Content Based on Selected Tab */}
-      <Box sx={{    marginTop:'25%', padding: 2 }}>
+      <Box >
         {value === 0 && <Community />} 
-        {value === 1 && <div>Explore Content</div>}
+        {value === 1 && <Explore/>}
         {value === 2 && <div>Reels Content</div>}
       </Box>
     </Box>

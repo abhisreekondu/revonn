@@ -7,7 +7,6 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 const Header = () => {
   return (
       <Toolbar     sx={{
-        position:"fixed",
         top: 0,
         left: 0,
         width: '100%',

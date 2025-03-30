@@ -7,7 +7,7 @@ const Community = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/revonn/following/660f6c1b3a4a5b0012345673")
+    axios.get("http://localhost:5000/revonn/followingposts/660f6c1b3a4a5b0012345673")
       .then((res) => setPosts(res.data))
       .catch((err) => console.error("AxiosError", err));
   }, []);
