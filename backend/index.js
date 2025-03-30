@@ -4,8 +4,9 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const getFollPosts = require("./routes/getFollPosts");
 const getAllPosts = require("./routes/getposts");
-
+const getFollReels=require("./routes/getFollReels")
 const app = express();
+const getAllUsers= require("./routes/getUsers")
 
 // Load environment variables from .env file
 dotenv.config();
@@ -14,8 +15,10 @@ app.use(express.json());
 app.use(cors());
 
 // Set up routes
-app.use("/revonn/following", getFollPosts);
-app.use("/revonn/posts", getAllPosts);
+app.use("/revonn/followingposts", getFollPosts);
+app.use("/revonn/allposts", getAllPosts);
+app.use("/revonn/followingreels",getFollReels);
+app.use("/revonn/allusers",getAllUsers);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, { dbName: 'communityDB' })
