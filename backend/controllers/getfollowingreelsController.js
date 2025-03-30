@@ -24,10 +24,8 @@ const getfollowingreels = async (req, res) => {
 
     // Fetch reels from users that the logged-in user follows
     const reels = await Reels.find({ userId: { $in: user.following } }) // Using Reels model
-      .populate("userId", "username videoUrl location") // Populate user details
-      .sort({ createdAt: -1 }); // Sort by the most recent
-
-    // Respond with the reels
+      .populate("userId", "username profilePic location")
+      .sort({ createdAt: -1 }); 
     res.status(200).json(reels);
   } catch (err) {
     console.error("Server Error:", err);
