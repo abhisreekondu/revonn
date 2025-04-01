@@ -7,34 +7,42 @@ const ReelCard = ({ reel }) => {
     <Card sx={{ width: '100%', marginBottom: 1 }}>
       {/* User Info */}
       <CardContent sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
           <Avatar
             src={reel.userId.profilePic}
             alt={reel.userId.username}
             sx={{ width: 40, height: 40, marginRight: 1 }}
           />
-          <div>
+          <Box>
             <Typography variant="subtitle1" fontWeight="bold">
               {reel.userId.username}
             </Typography>
             <Typography variant="caption" color="text.secondary">
               {reel.userId.location}
             </Typography>
-          </div>
-        </div>
+          </Box>
+        </Box>
         <IconButton>
           <MoreVert />
         </IconButton>
       </CardContent>
 
       {/* Reel Video */}
-      <CardMedia
-        component="video"
-        controls
-        sx={{ borderRadius: 2 }}
-        src={reel.videoUrl} // Assuming you have a `videoUrl` property in your reels schema
-        alt="Reel video"
-      />
+      <Box sx={{ position: 'relative', width: '100%', paddingTop: '177.77%', borderRadius: 2, overflow: 'hidden' }}>
+        <CardMedia
+          component="video"
+          controls
+          src={reel.videoUrl}
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%', // <-- Corrected height
+            objectFit: 'cover',
+          }}
+        />
+      </Box>
 
       {/* Caption and Icons */}
       <CardContent sx={{ paddingBottom: 0 }}>
