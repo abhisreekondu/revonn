@@ -3,7 +3,7 @@ import { Tabs, Tab, Box } from '@mui/material';
 import Following from '../pages/Following';
 import Explore from '../pages/Explore';
 import Reels from "../pages/Reels";
-import SearchUsers from './search/SearchUsers'; // Assuming SearchUsers component is in the components folder
+import SearchUsers from './SearchUsers';
 
 const TabNavigation = () => {
   const [value, setValue] = useState(0);
