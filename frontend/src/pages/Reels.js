@@ -2,19 +2,32 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Grid, Typography ,Box,CircularProgress} from '@mui/material';
 import ReelCard from '../components/ReelCard';
-
+import { useSelector } from "react-redux";
 const Reels = () => {
   const [reels, setReels] = useState([]);
   const [loading,setLoading] = useState(true);
+
+  const user = useSelector((state) => state.user.details);
+  const userId = user?._id;
   useEffect(() => {
-    axios.get("http://localhost:5000/revonn/followingreels/660f6c1b3a4a5b0012345673")  // Your API for fetching reels
+    if (!userId) {
+      console.log("User ID not available yet. Skipping API call.");
+      return;
+    }
+    console.log(`Making API call to fetch reels for userId: ${userId}`);
+    axios.get(`http://localhost:5000/revonn/followingreels/${userId}`)  // Your API for fetching reels
       .then((res) =>
         { setReels(res.data)
           setLoading(false)
         })
 
-      .catch((err) => console.error("AxiosError", err));
-  }, []);
+      .catch((err) => 
+        {console.error("AxiosError", err)
+          setLoading(false);
+
+        }
+    );
+  }, [userId]);
 
   return (
     <Container maxWidth="md">
