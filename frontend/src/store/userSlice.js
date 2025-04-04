@@ -5,7 +5,7 @@ export const fetchSingleUser = createAsyncThunk(
   'user/fetchSingleUser',
   async (_, thunkAPI) => {
     try {
-      const res = await axios.get('http://localhost:5000/revonn/users/single-user');
+      const res = await axios.get('http://localhost:5000/revonn/user/single-user');
       return res.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data || 'Error');
