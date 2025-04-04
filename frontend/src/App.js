@@ -8,7 +8,7 @@ import { CircularProgress, Box, Typography } from "@mui/material";
 import UploadReel from "./pages/UploadReel";
 import UploadPost from "./pages/UploadPost";
 import { Routes,Route} from "react-router-dom";
-
+import Profile from "./pages/Profile";
 import AllUsersPage from "./pages/Allusers";
 
 const App = () => {
@@ -69,6 +69,8 @@ const App = () => {
           <Route path="/upload-post" element={<UploadPost />} />
           <Route path="/upload-reel" element={<UploadReel />} />
           <Route path="/allusers" element={<AllUsersPage/>}/> 
+          <Route path="/profile/:username" element={<Profile />} />
+
         </Routes>
       </Box>
   

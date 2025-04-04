@@ -6,7 +6,7 @@ const getFollPosts = require("./routes/getFollPosts");
 const getAllPosts = require("./routes/getposts");
 const getFollReels=require("./routes/getFollReels");;
 const searchUsers=require("./routes/searchUsers")
-
+const likedposts=require("./routes/likedposts")
 const app = express();
 
 
@@ -23,7 +23,7 @@ app.use("/revonn/followingposts", getFollPosts);
 app.use("/revonn/allposts", getAllPosts);
 app.use("/revonn/followingreels",getFollReels);
 app.use("/revonn/users",searchUsers)
-
+app.use("/revonn/posts",likedposts)
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, { dbName: 'communityDB' })
