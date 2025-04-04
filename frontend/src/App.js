@@ -9,6 +9,8 @@ import UploadReel from "./pages/UploadReel";
 import UploadPost from "./pages/UploadPost";
 import { Routes,Route} from "react-router-dom";
 
+import AllUsersPage from "./pages/Allusers";
+
 const App = () => {
   const dispatch = useDispatch();
 
@@ -58,13 +60,15 @@ const App = () => {
       }}
     >
       <Header /> {/* Fixed at the top */}
-  
+      
+
       {/* Main content takes the available vertical space and scrolls if needed */}
       <Box sx={{ flex: 1, overflowY: 'auto' }}>
         <Routes>
-          <Route path="/" element={<Tab />} />
+           <Route path="/" element={<Tab />} /> 
           <Route path="/upload-post" element={<UploadPost />} />
           <Route path="/upload-reel" element={<UploadReel />} />
+          <Route path="/allusers" element={<AllUsersPage/>}/> 
         </Routes>
       </Box>
   
