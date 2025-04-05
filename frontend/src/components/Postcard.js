@@ -79,7 +79,7 @@ const PostCard = ({ post }) => {
       {/* Post Image */}
       <CardMedia
         component="img"
-        image={post.imageUrl}
+        image={post.mediaUrl}
         alt="Post"
         sx={{ borderRadius: 2 }}
       />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Card, CardMedia } from '@mui/material';
 
 const Reelimg = ({ reel }) => {
   return (
@@ -9,7 +9,7 @@ const Reelimg = ({ reel }) => {
         component="video"
         controls
         height="140"
-        src={reel.videoUrl} // Video URL
+        src={reel.mediaUrl} 
       />
     </Card>
   );

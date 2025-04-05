@@ -5,7 +5,7 @@ import { FavoriteBorder, ChatBubbleOutline, Send, MoreVert } from "@mui/icons-ma
 const ReelCard = ({ reel }) => {
   return (
     <Card sx={{ width: '100%', marginBottom: 1 }}>
-      {/* User Info */}
+    
       <CardContent sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Avatar
@@ -32,13 +32,13 @@ const ReelCard = ({ reel }) => {
         <CardMedia
           component="video"
           controls
-          src={reel.videoUrl}
+          src={reel.mediaUrl}
           sx={{
             position: 'absolute',
             top: 0,
             left: 0,
             width: '100%',
-            height: '100%', // <-- Corrected height
+            height: '100%',
             objectFit: 'cover',
           }}
         />
