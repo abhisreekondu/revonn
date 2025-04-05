@@ -15,7 +15,7 @@ const Reels = () => {
       return;
     }
     console.log(`Making API call to fetch reels for userId: ${userId}`);
-    axios.get(`http://localhost:5000/revonn/followingreels/${userId}`)  // Your API for fetching reels
+    axios.get(`http://localhost:5000/revonn/followingcontent/${userId}?type=reel`)
       .then((res) =>
         { setReels(res.data)
           setLoading(false)

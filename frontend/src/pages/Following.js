@@ -24,7 +24,8 @@ const Following = () => {
     console.log(`Making API call to fetch posts for userId: ${userId}`);
 
     axios
-      .get(`http://localhost:5000/revonn/followingposts/${userId}`)
+    .get(`http://localhost:5000/revonn/followingcontent/${userId}?type=post`)
+
       .then((res) => {
         console.log("API Response:", res.data);
         setPosts(res.data);
