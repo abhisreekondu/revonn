@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Box, List, ListItem, Typography, Button } from '@mui/material';
+import { Box, List, ListItem, Typography, Button ,CircularProgress} from '@mui/material';
 
 const AllUsersPage = () => {
   const [searchParams] = useSearchParams();
@@ -33,7 +33,16 @@ const AllUsersPage = () => {
     navigate(`/profile/${username}`);
   };
 
-  if (loading) return <Typography>Loading...</Typography>;
+  if (loading) return  <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "100vh",
+            }}
+          >
+            <CircularProgress size={50} />
+          </Box>;
 
   return (
     <Box sx={{ p: 2 }}>
