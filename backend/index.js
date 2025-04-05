@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const getFollPosts = require("./routes/getFollPosts");
+
 const getAllPosts = require("./routes/getposts");
-const getFollReels=require("./routes/getFollReels");;
 const searchUsers=require("./routes/searchUsers")
 const likedposts=require("./routes/likedposts")
+const followingContent=require("./routes/followingContent")
 const app = express();
 
 
@@ -19,9 +19,8 @@ app.use(cors());
 
 const userRoutes = require('./routes/userRoute');
 app.use('/revonn/user', userRoutes);
-app.use("/revonn/followingposts", getFollPosts);
 app.use("/revonn/allposts", getAllPosts);
-app.use("/revonn/followingreels",getFollReels);
+app.use("/revonn/followingcontent",followingContent);
 app.use("/revonn/users",searchUsers)
 app.use("/revonn/posts",likedposts)
 
