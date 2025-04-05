@@ -1,5 +1,5 @@
 // searchUsersController.js
-const User = require("../models/User");
+const User = require("../models/Users");
 
 exports.searchUsers = async (req, res) => {
   const query = req.query.query || '';  // Get the search query from the URL
