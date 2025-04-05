@@ -49,13 +49,14 @@ const SearchUsers = () => {
       setLoading(false);
     }
   };
-
   const handleSelectUser = (username) => {
     console.log("Selected user:", username);
     setSearchQuery(username);
     setSuggestions([]);
     setShowSuggestions(false);
+    navigate(`/profile/${username}`);
   };
+  
 
   const handleSeeAll = () => {
     console.log("Navigate to /allusers");
