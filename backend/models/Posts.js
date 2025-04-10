@@ -7,7 +7,14 @@ const PostSchema = new mongoose.Schema({
   mediaType: { type: String, enum: ['image', 'video'], required: true },
   contentType: { type: String, enum: ['post', 'reel'], required: true },
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Users" }],
-  comments: [{ username: String, text: String }],
+  comments: [
+    {
+      userId: { type: mongoose.Schema.Types.ObjectId, ref: "Users", required: true },
+      username: { type: String, required: true },
+      text: { type: String, required: true },
+      createdAt: { type: Date, default: Date.now }
+    }
+  ]
 }, { timestamps: true });
 
 module.exports = mongoose.model("Posts", PostSchema);
