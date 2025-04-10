@@ -69,12 +69,12 @@ const App = () => {
           <Route path="/upload-post" element={<UploadPost />} />
           <Route path="/upload-reel" element={<UploadReel />} />
           <Route path="/allusers" element={<AllUsersPage/>}/> 
-          <Route path="/profile/:username" element={<Profile />} />
+          <Route path="/profile/:userId" element={<Profile />} />
 
         </Routes>
       </Box>
   
-      <BottomNav /> {/* Fixed at the bottom */}
+      <BottomNav /> 
     </Box>
   );
   
