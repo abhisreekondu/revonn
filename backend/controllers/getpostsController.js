@@ -2,8 +2,19 @@ const Post = require("../models/Posts");
 
 const getpostsController = async (req, res) => {
   try {
-    // Fetch all content (posts + reels), already stored in one model
-    const allContent = await Post.find()
+    const { userId, type } = req.query; 
+
+    const filter = {};
+
+    if (userId) {
+      filter.userId = userId; 
+    }
+
+    if (type) {
+      filter.contentType = type; 
+    }
+
+    const allContent = await Post.find(filter)
       .populate("userId", "username profilePic location")
       .sort({ createdAt: -1 });
 
