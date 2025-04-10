@@ -4,13 +4,13 @@ const Users = require("../models/Users");
 
 const getFollowingContent = async (req, res) => {
   try {
-    console.log("➡️ Request received:", req.params.userId, req.query.type);
+    console.log("Request received in following:", req.params.userId, req.query.type);
 
     const userId = new mongoose.Types.ObjectId(req.params.userId);
     const user = await Users.findById(userId);
 
     if (!user) {
-      console.log("❌ User not found");
+      console.log("User not found");
       return res.status(404).json({ message: "User not found" });
     }
 
