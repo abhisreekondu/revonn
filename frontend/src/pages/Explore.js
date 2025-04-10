@@ -10,7 +10,7 @@ const Explore = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/revonn/allposts')
+      .get('http://localhost:5000/revonn/posts')
       .then((res) => {
         setPosts(res.data);
         setLoading(false);
