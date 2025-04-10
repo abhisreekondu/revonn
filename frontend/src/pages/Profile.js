@@ -39,19 +39,22 @@ const handleMenuClose = () => {
 };
 
  
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/revonn/users/profile/${userId}`)
-      .then((res) => {
-        setUser(res.data);
-        setIsFollowing(res.data.isFollowed || false);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching user profile:", err);
-        setLoading(false);
-      });
-  }, [userId, currentUserId]);
+useEffect(() => {
+  if (!userId || !currentUserId) return;
+
+  axios
+    .get(`http://localhost:5000/revonn/users/profile/${userId}?currentUserId=${currentUserId}`)
+    .then((res) => {
+      setUser(res.data);
+      setIsFollowing(res.data.isFollowed || false);
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error("Error fetching user profile:", err);
+      setLoading(false);
+    });
+}, [userId, currentUserId]);
+
 
   const handleFollowToggle = async () => {
     try {
