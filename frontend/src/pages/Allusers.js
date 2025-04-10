@@ -29,8 +29,8 @@ const AllUsersPage = () => {
     fetchUsers();
   }, [query, limit]);
 
-  const handleViewProfile = (username) => {
-    navigate(`/profile/${username}`);
+  const handleViewProfile = (user) => {
+    navigate(`/profile/${user._id}`);
   };
 
   if (loading) return  <Box
@@ -65,7 +65,7 @@ const AllUsersPage = () => {
               <Button
                 variant="outlined"
                 color="primary"
-                onClick={() => handleViewProfile(user.username)}
+                onClick={() => handleViewProfile(user)}
               >
                 View Profile
               </Button>

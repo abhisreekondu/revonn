@@ -49,13 +49,14 @@ const SearchUsers = () => {
       setLoading(false);
     }
   };
-  const handleSelectUser = (username) => {
-    console.log("Selected user:", username);
-    setSearchQuery(username);
+  const handleSelectUser = (user) => {
+    console.log("Selected user:", user);
+    setSearchQuery(user.username);
     setSuggestions([]);
     setShowSuggestions(false);
-    navigate(`/profile/${username}`);
+    navigate(`/profile/${user._id}`); 
   };
+  
   
 
   const handleSeeAll = () => {
@@ -92,13 +93,14 @@ const SearchUsers = () => {
           >
             <List dense>
               {suggestions.map((user) => (
-                <ListItem
-                  button
-                  key={user._id}
-                  onClick={() => handleSelectUser(user.username)}
-                >
-                  <Typography>{user.username}</Typography>
-                </ListItem>
+              <ListItem
+              button
+              key={user._id}
+              onClick={() => handleSelectUser(user)}
+            >
+              <Typography>{user.username}</Typography>
+            </ListItem>
+            
               ))}
 
               <ListItem button onClick={handleSeeAll}>
