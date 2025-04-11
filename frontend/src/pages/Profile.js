@@ -150,6 +150,7 @@ useEffect(() => {
       </Grid>
 
       {/* Buttons */}
+      {currentUserId!=userId &&(
       <Box display="flex" justifyContent="space-between" mt={2}>
         <Button
           fullWidth
@@ -164,11 +165,12 @@ useEffect(() => {
           Message
         </Button>
       </Box>
-
+)}
     
       <ProfileContentTabs userId={userId} currentUserId={currentUserId} />
     </Container>
   );
+
 };
 
 export default UserProfile;
