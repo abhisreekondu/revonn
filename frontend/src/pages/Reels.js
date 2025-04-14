@@ -4,7 +4,7 @@ import { Container, Grid, Typography ,Box,CircularProgress} from '@mui/material'
 import ReelCard from '../components/ReelCard';
 import { useSelector } from "react-redux";
 const Reels = () => {
-  const [reels, setReels] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [loading,setLoading] = useState(true);
 
   const user = useSelector((state) => state.user.details);
@@ -17,7 +17,7 @@ const Reels = () => {
     console.log(`Making API call to fetch reels for userId: ${userId}`);
     axios.get(`http://localhost:5000/revonn/followingcontent/${userId}?type=reel`)
       .then((res) =>
-        { setReels(res.data)
+        { setPosts(res.data)
           setLoading(false)
         })
 
@@ -28,7 +28,7 @@ const Reels = () => {
         }
     );
   }, [userId]);
-
+  console.log("Reels received from backend:", posts);
   return (
     <Container maxWidth="md">
        {loading ? ( 
@@ -43,16 +43,17 @@ const Reels = () => {
         <CircularProgress />
         </Box>
       ) :
-      reels.length === 0 ? 
+      posts.length === 0 ? 
       (
-        <Typography>No reels from followed users.</Typography>
+        <Typography  align="center">No reels from followed users.</Typography>
       ) : (
         <Grid container spacing={2}>
-          {reels.map((reel) => (
-            <Grid item xs={12} sm={12} md={12} key={reel._id}>
-              <ReelCard reel={reel} />
-            </Grid>
-          ))}
+          {posts.map((post) => (
+  <Grid item xs={12} sm={12} md={12} key={post._id}>
+    <ReelCard post={post} /> 
+  </Grid>
+))}
+
         </Grid>
       )}
     </Container>
