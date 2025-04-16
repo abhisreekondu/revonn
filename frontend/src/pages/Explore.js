@@ -22,7 +22,7 @@ const Explore = () => {
   }, []);
 
   return (
-    <Container maxWidth={false} sx={{ pt: '10px',paddingBottom: '50px' }}>
+    <Container maxWidth={false} sx={{ pt: '8px',paddingBottom: '50px' }}>
       {loading ? (
         <Box
           sx={{

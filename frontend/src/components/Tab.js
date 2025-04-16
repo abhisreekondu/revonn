@@ -45,7 +45,7 @@ const TabNavigation = () => {
         {value === 0 && <Following />} 
         
         {value === 1 && (
-          <Box sx={{ width: '100vw' , pt: '120px'}}>
+          <Box sx={{ width: '100vw' , pt: '107px'}}>
             <SearchUsers /> 
             <Explore />    
           </Box>
