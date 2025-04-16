@@ -67,7 +67,15 @@ const SearchUsers = () => {
 
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
-      <Box sx={{ width: 300, margin: 'auto', position: 'relative' }}>
+      <Box sx={{
+         width: 400, margin: 'auto', position: 'relative',
+           width: {
+             xs: "90%",     // 90% width on small screens
+             sm: "70%",     // 70% on tablets
+             md: "60%",     // 60% on laptops/desktops
+           },
+           mx: "auto",       // center horizontally
+       }}>
         <TextField
           label="Search Users"
           variant="outlined"

@@ -21,11 +21,10 @@ import CommentDrawer from "./commentDrawer";
 
 const PostCard = ({ post }) => {
   const currentUserId = useSelector((state) => state.user.details?._id);
-const [commentOpen, setCommentOpen] = useState(false);
+  const [commentOpen, setCommentOpen] = useState(false);
   const [liked, setLiked] = useState(
     Array.isArray(post.likes) && post.likes.includes(currentUserId)
   );
-  
   const [likesCount, setLikesCount] = useState(post.likes.length);
 
   const handleLikeToggle = async () => {
@@ -48,83 +47,85 @@ const [commentOpen, setCommentOpen] = useState(false);
   };
 
   return (
-    <Card sx={{ width: "100%", marginBottom: 1 }}>
-      {/* User Info */}
-      <CardContent
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Avatar
-            src={post.userId.profilePic}
-            alt={post.userId.username}
-            sx={{ width: 40, height: 40, marginRight: 1 }}
-          />
-          <div>
-            <Typography variant="subtitle1" fontWeight="bold">
-              {post.userId.username}
-            </Typography>
-            <Typography variant="caption" color="text.secondary">
-              {post.userId.location}
-            </Typography>
-          </div>
-        </div>
-        <IconButton>
-          <MoreVert />
-        </IconButton>
-      </CardContent>
-
-      {/* Post Image */}
-      <CardMedia
-        component="img"
-        image={post.mediaUrl}
-        alt="Post"
-        sx={{ borderRadius: 2 }}
-      />
-
-      {/* Caption + Icons */}
-      <CardContent sx={{ paddingBottom: 0 }}>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-          {/* Caption */}
-          <Typography
-            variant="body2"
-            component="span"
-            color="text.secondary"
-            sx={{ wordWrap: "break-word" }}
-          >
-            {post.caption}
-          </Typography>
-
-          {/* Icons */}
-          <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-            <IconButton onClick={handleLikeToggle}>
-              {liked ? (
-                <Favorite sx={{ color: "red" }} />
-              ) : (
-                <FavoriteBorder />
-              )}
-            </IconButton>
-
-            <Typography variant="body2">{likesCount}</Typography>
-
-            <IconButton onClick={() => setCommentOpen(true)}>
-              <ChatBubbleOutline />
-            </IconButton>
-            <CommentDrawer
-        open={commentOpen}
-        onClose={() => setCommentOpen(false)}
-        post={post}
-      />
-            <IconButton>
-              <Send />
-            </IconButton>
+    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <Card sx={{ width: '100%', marginBottom: 2 }}>
+        {/* User Info */}
+        <CardContent
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Avatar
+              src={post.userId.profilePic}
+              alt={post.userId.username}
+              sx={{ width: 40, height: 40, marginRight: 1 }}
+            />
+            <Box>
+              <Typography variant="subtitle1" fontWeight="bold">
+                {post.userId.username}
+              </Typography>
+              <Typography variant="caption" color="text.secondary">
+                {post.userId.location}
+              </Typography>
+            </Box>
           </Box>
-        </Box>
-      </CardContent>
-    </Card>
+          <IconButton>
+            <MoreVert />
+          </IconButton>
+        </CardContent>
+
+        {/* Post Image */}
+        <CardMedia
+          component="img"
+          image={post.mediaUrl}
+          alt="Post"
+          sx={{ borderRadius: 2 }}
+        />
+
+        {/* Caption + Icons */}
+        <CardContent sx={{ paddingBottom: 0 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+            {/* Caption */}
+            <Typography
+              variant="body2"
+              component="span"
+              color="text.secondary"
+              sx={{ wordWrap: "break-word" }}
+            >
+              {post.caption}
+            </Typography>
+
+            {/* Icons */}
+            <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+              <IconButton onClick={handleLikeToggle}>
+                {liked ? (
+                  <Favorite sx={{ color: "red" }} />
+                ) : (
+                  <FavoriteBorder />
+                )}
+              </IconButton>
+
+              <Typography variant="body2">{likesCount}</Typography>
+
+              <IconButton onClick={() => setCommentOpen(true)}>
+                <ChatBubbleOutline />
+              </IconButton>
+              <CommentDrawer
+                open={commentOpen}
+                onClose={() => setCommentOpen(false)}
+                post={post}
+              />
+              <IconButton>
+                <Send />
+              </IconButton>
+            </Box>
+          </Box>
+        </CardContent>
+      </Card>
+    </Box>
   );
 };
 

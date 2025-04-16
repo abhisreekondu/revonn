@@ -31,25 +31,42 @@ const Header = () => {
 
   return (
     <>
-      <Toolbar sx={{ top: 0, left: 0, width: '100%', backgroundColor: 'white' }}>
-        <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
-          CONNECT
-        </Typography>
+  <Toolbar
+  sx={{
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    width: '100%',
+    zIndex: 1300,
+    backgroundColor: 'white',
+    px: 2, 
+    minHeight: '64px', 
+    boxSizing: 'border-box',
+  }}
+>
+  <Typography
+    variant="h6"
+    noWrap
+    sx={{ fontWeight: 'bold' }}
+  >
+    CONNECT
+  </Typography>
 
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <IconButton edge="end" onClick={handleAddClick}>
-            <AddIcon />
-          </IconButton>
+  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, ml: 'auto' }}>
+    <IconButton size="large" onClick={handleAddClick}>
+      <AddIcon />
+    </IconButton>
+    <IconButton size="large">
+      <NotificationsIcon />
+    </IconButton>
+    <IconButton size="large">
+      <MoreHorizIcon />
+    </IconButton>
+  </Box>
+</Toolbar>
 
-          <IconButton edge="end">
-            <NotificationsIcon />
-          </IconButton>
 
-          <IconButton edge="end">
-            <MoreHorizIcon />
-          </IconButton>
-        </Box>
-      </Toolbar>
 
       {/* Menu under Add Icon */}
       <Menu

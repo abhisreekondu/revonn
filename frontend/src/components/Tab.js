@@ -13,26 +13,39 @@ const TabNavigation = () => {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
-      {/* Tabs Component */}
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        indicatorColor="primary"
-        textColor="primary"
-        centered
-      >
-        <Tab label="Following" sx={{ color: 'red' }} />
-        <Tab label="Explore" sx={{ color: 'red' }} />
-        <Tab label="Reels" sx={{ color: 'red' }} />
-      </Tabs>
+    <Box sx={{ width: '100vw'}}>
+      
+      <Box
+  sx={{
+    position: 'fixed',
+    top: '51px', // height of the header
+    width: '100%',
+    zIndex: 1200,
+    backgroundColor: 'white',
+   
+    
+  }}
+>
+      
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          centered
+        >
+          <Tab label="Following" sx={{ color: 'red' }} />
+          <Tab label="Explore" sx={{ color: 'red' }} />
+          <Tab label="Reels" sx={{ color: 'red' }} />
+        </Tabs>
+      </Box>
 
       {/* Content Based on Selected Tab */}
-      <Box>
+      <Box sx={{ width: '100vw' }}>
         {value === 0 && <Following />} 
         
         {value === 1 && (
-          <Box>
+          <Box sx={{ width: '100vw' , pt: '120px'}}>
             <SearchUsers /> 
             <Explore />    
           </Box>

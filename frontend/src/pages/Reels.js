@@ -30,7 +30,8 @@ const Reels = () => {
   }, [userId]);
   console.log("Reels received from backend:", posts);
   return (
-    <Container maxWidth="md">
+    <Container maxWidth={false} sx={{ pt: '89px' ,paddingBottom: '50px'}}>
+
        {loading ? ( 
          <Box
          sx={{
@@ -49,7 +50,7 @@ const Reels = () => {
       ) : (
         <Grid container spacing={2}>
           {posts.map((post) => (
-  <Grid item xs={12} sm={12} md={12} key={post._id}>
+  <Grid item xs={12} sm={8} md={4} key={post._id}>
     <ReelCard post={post} /> 
   </Grid>
 ))}

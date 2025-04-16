@@ -6,10 +6,7 @@ import {
   CardMedia,
   IconButton,
   Typography,
-  Box,
-  Drawer,
-  TextField,
-  Button,
+  Box
 } from "@mui/material";
 import {
   Favorite,
@@ -51,6 +48,7 @@ const ReelCard = ({ post }) => {
   };
 
   return (
+    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
     <Card sx={{ width: "100%", marginBottom: 1 }}>
       <CardContent
         sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}
@@ -118,6 +116,7 @@ const ReelCard = ({ post }) => {
         </Box>
       </CardContent>
     </Card>
+    </Box>
   );
 };
 

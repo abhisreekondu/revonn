@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
+import "./App.css"
 import BottomNav from "./components/BottomNav";
 import Header from "./components/Header";
 import Tab from "./components/Tab";
 import { fetchSingleUser } from "./store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { CircularProgress, Box, Typography } from "@mui/material";
+import { CircularProgress, Box, Typography, Hidden } from "@mui/material";
 import UploadReel from "./pages/UploadReel";
 import UploadPost from "./pages/UploadPost";
 import { Routes,Route} from "react-router-dom";
@@ -57,6 +58,7 @@ const App = () => {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
+        overflowX: 'hidden'
       }}
     >
       <Header /> {/* Fixed at the top */}

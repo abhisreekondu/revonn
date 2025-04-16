@@ -22,7 +22,7 @@ const Explore = () => {
   }, []);
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth={false} sx={{ pt: '10px',paddingBottom: '50px' }}>
       {loading ? (
         <Box
           sx={{
@@ -32,17 +32,17 @@ const Explore = () => {
             minHeight: "100vh",
           }}
         >
-          <CircularProgress />
+          <CircularProgress size={50} />
         </Box>
       ) : (
         <Grid container spacing={1} sx={{ padding: 0, margin: 0 }}>
           {posts.length === 0 ? (
             <Typography variant="h6" align="center" sx={{ width: "100%" }}>
-              No posts or reels available.
+              No reels from followed users are available.
             </Typography>
           ) : (
             posts.map((item) => (
-              <Grid item xs={4} sm={4} md={3} key={item._id}>
+              <Grid item xs={4} sm={6} md={2} key={item._id}>
                 {item.contentType === "reel" ? (
                   <Reelimg reel={item} />
                 ) : (
