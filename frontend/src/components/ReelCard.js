@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Avatar,
   Card,
@@ -7,6 +7,9 @@ import {
   IconButton,
   Typography,
   Box,
+  Drawer,
+  TextField,
+  Button,
 } from "@mui/material";
 import {
   Favorite,
@@ -17,15 +20,16 @@ import {
 } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import CommentDrawer from "./commentDrawer";
 
 const ReelCard = ({ post }) => {
   const currentUserId = useSelector((state) => state.user.details?._id);
-
+  const [commentOpen, setCommentOpen] = useState(false);
   const [liked, setLiked] = useState(
     Array.isArray(post.likes) && post.likes.includes(currentUserId)
   );
-  
   const [likesCount, setLikesCount] = useState(post.likes.length);
+ 
 
   const handleLikeToggle = async () => {
     try {
@@ -45,9 +49,12 @@ const ReelCard = ({ post }) => {
       console.error("Error toggling like:", err);
     }
   };
+
   return (
     <Card sx={{ width: "100%", marginBottom: 1 }}>
-      <CardContent sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <CardContent
+        sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}
+      >
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Avatar
             src={post.userId.profilePic}
@@ -68,25 +75,25 @@ const ReelCard = ({ post }) => {
         </IconButton>
       </CardContent>
 
-      <Box sx={{ position: "relative", width: "100%", paddingTop: "177.77%", borderRadius: 2, overflow: "hidden" }}>
+      <Box
+        sx={{ position: "relative", width: "100%", paddingTop: "177.77%", borderRadius: 2, overflow: "hidden" }}
+      >
         <CardMedia
           component="video"
           controls
           src={post.mediaUrl}
-          sx={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-          }}
+          sx={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}
         />
       </Box>
 
       <CardContent sx={{ paddingBottom: 0 }}>
         <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-          <Typography variant="body2" component="span" color="text.secondary" sx={{ wordWrap: "break-word" }}>
+          <Typography
+            variant="body2"
+            component="span"
+            color="text.secondary"
+            sx={{ wordWrap: "break-word" }}
+          >
             {post.caption}
           </Typography>
           <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
@@ -94,9 +101,16 @@ const ReelCard = ({ post }) => {
               {liked ? <Favorite sx={{ color: "red" }} /> : <FavoriteBorder />}
             </IconButton>
             <Typography variant="body2">{likesCount}</Typography>
-            <IconButton>
-              <ChatBubbleOutline />
-            </IconButton>
+            <IconButton onClick={() => setCommentOpen(true)}>
+        <ChatBubbleOutline />
+      </IconButton>
+
+      <CommentDrawer
+        open={commentOpen}
+        onClose={() => setCommentOpen(false)}
+        post={post}
+      />
+
             <IconButton>
               <Send />
             </IconButton>

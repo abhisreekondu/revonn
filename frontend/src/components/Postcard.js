@@ -17,10 +17,11 @@ import {
 } from "@mui/icons-material";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import CommentDrawer from "./commentDrawer";
 
 const PostCard = ({ post }) => {
   const currentUserId = useSelector((state) => state.user.details?._id);
-
+const [commentOpen, setCommentOpen] = useState(false);
   const [liked, setLiked] = useState(
     Array.isArray(post.likes) && post.likes.includes(currentUserId)
   );
@@ -109,9 +110,14 @@ const PostCard = ({ post }) => {
 
             <Typography variant="body2">{likesCount}</Typography>
 
-            <IconButton>
+            <IconButton onClick={() => setCommentOpen(true)}>
               <ChatBubbleOutline />
             </IconButton>
+            <CommentDrawer
+        open={commentOpen}
+        onClose={() => setCommentOpen(false)}
+        post={post}
+      />
             <IconButton>
               <Send />
             </IconButton>

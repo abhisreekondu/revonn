@@ -7,7 +7,10 @@ const getAllPosts = require("./routes/getposts");
 const searchUsers=require("./routes/searchUsers")
 const likedposts=require("./routes/likedposts")
 const followingContent=require("./routes/followingContent")
+const userRoutes = require('./routes/userRoute');
 const followcontroller=require("./routes/follow")
+const getComments=require("./routes/getComments")
+const addCommentRoute = require("./routes/addcommentRoute");
 const app = express();
 
 
@@ -17,8 +20,8 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 
+//routes
 
-const userRoutes = require('./routes/userRoute');
 app.use('/revonn/user', userRoutes);
 app.use("/revonn/posts", getAllPosts);
 app.use("/revonn/followingcontent",followingContent);
@@ -26,6 +29,11 @@ app.use("/revonn/users",searchUsers)
 app.use("/revonn/posts",likedposts)
 app.use("/revonn/users",profile)
 app.use("/revonn/follow",followcontroller)
+app.use("/revonn/allcomments",getComments)
+app.use("/revonn/addcomment",addCommentRoute)
+
+
+
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, { dbName: 'communityDB' })
   .then(() => console.log("✅ MongoDB connected"))
