@@ -12,6 +12,8 @@ import InfoIcon from "@mui/icons-material/Info";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import AboutAccountDialog from "./Dialogs/AboutAccountDialog";
+
 
 const PostOptionsMenu = ({ post ,fetchPosts }) => {
 console.log("Post from the postOptionsMenu:",post)
@@ -21,6 +23,7 @@ console.log("Post from the postOptionsMenu:",post)
    const currentUserId = useSelector((state) => state.user.details?._id);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
+  const [aboutOpen, setAboutOpen] = useState(false);
 
   const handleToggleFollow = async () => {
     try {
@@ -50,12 +53,11 @@ console.log("Post from the postOptionsMenu:",post)
           </ListItemIcon>
           <ListItemText>Unfollow</ListItemText>
         </MenuItem>
-        <MenuItem >
-          <ListItemIcon>
-            <InfoIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>About this account</ListItemText>
-        </MenuItem>
+        <MenuItem onClick={() => { setAboutOpen(true); handleClose(); }}>
+  <ListItemIcon><InfoIcon fontSize="small" /></ListItemIcon>
+  <ListItemText>About this account</ListItemText>
+</MenuItem>
+
         <MenuItem>
           <ListItemIcon>
             <FlagIcon fontSize="small" sx={{ color: 'red' }}/>
@@ -65,6 +67,12 @@ console.log("Post from the postOptionsMenu:",post)
 
        
       </Menu>
+      <AboutAccountDialog
+  open={aboutOpen}
+  onClose={() => setAboutOpen(false)}
+  user={post.userId}
+/>
+
     </>
   );
 };
