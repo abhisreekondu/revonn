@@ -18,7 +18,7 @@ const getFollowingContent = async (req, res) => {
     if (req.query.type) filter.contentType = req.query.type;
 
     const content = await Post.find(filter)
-      .populate("userId", "username profilePic location")
+      .populate("userId", "username profilePic location createdAt")
       .sort({ createdAt: -1 });
 
     console.log(" Content fetched:", content.length);
