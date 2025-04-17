@@ -7,10 +7,12 @@ import {
   Avatar,
   TextField,
   Button,
-  CircularProgress
+  CircularProgress,IconButton
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import axios from "axios";
+
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const CommentDrawer = ({ open, onClose, post }) => {
   const [comments, setComments] = useState([]);
@@ -36,6 +38,15 @@ const CommentDrawer = ({ open, onClose, post }) => {
       fetchComments();
     }
   }, [post, open]);
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await axios.delete(`http://localhost:5000/revonn/deletecomment/${post._id}/${commentId}`);
+      setComments((prev) => prev.filter((c) => c._id !== commentId));
+    } catch (err) {
+      console.error("Error deleting comment:", err);
+    }
+  };
   
 
   const handleAddComment = async () => {
@@ -73,13 +84,22 @@ const CommentDrawer = ({ open, onClose, post }) => {
   </Box>
 ) : (
   comments.map((comment, index) => (
-    <Box key={index} display="flex" alignItems="center" mb={1}>
-      <Avatar src={comment.userId?.profilePic} sx={{ width: 30, height: 30, mr: 1 }} />
-      <Box>
-        <Typography variant="subtitle2" >{comment.username}</Typography>
-        <Typography variant="body2">{comment.text}</Typography>
-      </Box>
+    <Box key={index} display="flex" alignItems="center" justifyContent="space-between" mb={1}>
+  <Box display="flex" alignItems="center">
+    <Avatar src={comment.userId?.profilePic} sx={{ width: 30, height: 30, mr: 1 }} />
+    <Box>
+      <Typography variant="subtitle2">{comment.username}</Typography>
+      <Typography variant="body2">{comment.text}</Typography>
     </Box>
+  </Box>
+  {comment.userId?._id === currentUser._id && (
+    <IconButton onClick={() => handleDeleteComment(comment._id)} size="small">
+      <DeleteIcon fontSize="small" />
+    </IconButton>
+  )}
+</Box>
+
+    
   ))
 )}
 

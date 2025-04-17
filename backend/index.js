@@ -11,6 +11,7 @@ const userRoutes = require('./routes/userRoute');
 const followcontroller=require("./routes/follow")
 const getComments=require("./routes/getComments")
 const addCommentRoute = require("./routes/addcommentRoute");
+const deletecommentRouute=require("./routes/deletecommentRoute")
 const app = express();
 
 
@@ -31,6 +32,7 @@ app.use("/revonn/users",profile)
 app.use("/revonn/follow",followcontroller)
 app.use("/revonn/allcomments",getComments)
 app.use("/revonn/addcomment",addCommentRoute)
+app.use("/revonn/deletecomment",deletecommentRouute)
 
 
 
