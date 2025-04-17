@@ -13,6 +13,8 @@ const getComments=require("./routes/getComments")
 const addCommentRoute = require("./routes/addcommentRoute");
 const deletecommentRouute=require("./routes/deletecommentRoute")
 const report=require("./routes/report")
+
+const saveToggle=require("./routes/savetoggleroute")
 const app = express();
 
 
@@ -36,7 +38,7 @@ app.use("/revonn/addcomment",addCommentRoute)
 app.use("/revonn",report)
 app.use("/revonn/deletecomment",deletecommentRouute)
 
-
+app.use("/revonn/posts/save",saveToggle)
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, { dbName: 'communityDB' })
