@@ -96,11 +96,21 @@ useEffect(() => {
   }
 
   return (
-    <Container maxWidth="sm">
+    <Container
+  maxWidth={false}
+  disableGutters
+  sx={{
+    width: '98%',
+    overflowX: 'hidden',
+    pt: '50px',
+    pb: '40px',
+  }}
+>
+
       {/* Profile Header */}
       <Box position="relative" p={2}>
   {/* Top-right menu icon */}
-  <Box position="absolute" top={16} right={-30}>
+  <Box position="absolute" top={16} right={10}>
     <IconButton onClick={handleMenuClick}>
       <MoreVertIcon />
     </IconButton>
