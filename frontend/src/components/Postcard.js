@@ -18,8 +18,9 @@ import {
 import axios from "axios";
 import { useSelector } from "react-redux";
 import CommentDrawer from "./commentDrawer";
+import PostOptionsMenu from "./PostOptionsMenu";
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post,fetchPosts }) => {
   const currentUserId = useSelector((state) => state.user.details?._id);
   const [commentOpen, setCommentOpen] = useState(false);
   const [liked, setLiked] = useState(
@@ -72,9 +73,9 @@ const PostCard = ({ post }) => {
               </Typography>
             </Box>
           </Box>
-          <IconButton>
-            <MoreVert />
-          </IconButton>
+          <PostOptionsMenu post={post} fetchPosts={fetchPosts} />
+
+
         </CardContent>
 
         {/* Post Image */}
@@ -82,7 +83,7 @@ const PostCard = ({ post }) => {
           component="img"
           image={post.mediaUrl}
           alt="Post"
-          sx={{ borderRadius: 2 }}
+         
         />
 
         {/* Caption + Icons */}

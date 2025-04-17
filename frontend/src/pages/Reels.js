@@ -3,13 +3,15 @@ import axios from 'axios';
 import { Container, Grid, Typography ,Box,CircularProgress} from '@mui/material';
 import ReelCard from '../components/ReelCard';
 import { useSelector } from "react-redux";
+
+import { useCallback } from 'react';
 const Reels = () => {
   const [posts, setPosts] = useState([]);
   const [loading,setLoading] = useState(true);
 
   const user = useSelector((state) => state.user.details);
   const userId = user?._id;
-  useEffect(() => {
+const fetchPosts = useCallback(async ()=>{
     if (!userId) {
       console.log("User ID not available yet. Skipping API call.");
       return;
@@ -28,6 +30,12 @@ const Reels = () => {
         }
     );
   }, [userId]);
+
+
+  useEffect(() => {
+    fetchPosts();
+},[fetchPosts])
+
   console.log("Reels received from backend:", posts);
   return (
     <Container maxWidth={false} sx={{ pt: '89px' ,paddingBottom: '50px'}}>
@@ -51,7 +59,7 @@ const Reels = () => {
         <Grid container spacing={2}>
           {posts.map((post) => (
   <Grid item xs={12} sm={8} md={4} key={post._id}>
-    <ReelCard post={post} /> 
+    <ReelCard post={post} fetchPosts={fetchPosts} /> 
   </Grid>
 ))}
 

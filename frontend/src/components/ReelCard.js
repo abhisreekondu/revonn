@@ -18,8 +18,9 @@ import {
 import { useSelector } from "react-redux";
 import axios from "axios";
 import CommentDrawer from "./commentDrawer";
+import PostOptionsMenu from "./PostOptionsMenu"
 
-const ReelCard = ({ post }) => {
+const ReelCard = ({ post, fetchPosts}) => {
   const currentUserId = useSelector((state) => state.user.details?._id);
   const [commentOpen, setCommentOpen] = useState(false);
   const [liked, setLiked] = useState(
@@ -49,7 +50,7 @@ const ReelCard = ({ post }) => {
 
   return (
     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-    <Card sx={{ width: "100%", marginBottom: 1 }}>
+    <Card sx={{ width: "80%", marginBottom: 1 }}>
       <CardContent
         sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}
       >
@@ -68,9 +69,8 @@ const ReelCard = ({ post }) => {
             </Typography>
           </Box>
         </Box>
-        <IconButton>
-          <MoreVert />
-        </IconButton>
+        <PostOptionsMenu post={post} fetchPosts={fetchPosts} />
+
       </CardContent>
 
       <Box

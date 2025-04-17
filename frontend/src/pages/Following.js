@@ -3,6 +3,7 @@ import axios from "axios";
 import { Container, Typography, CircularProgress, Box, Grid } from "@mui/material";
 import PostCard from "../components/Postcard";
 import { useSelector } from "react-redux";
+import { useCallback } from "react";
 
 const Following = () => {
   const [posts, setPosts] = useState([]);
@@ -15,7 +16,11 @@ const Following = () => {
   console.log("Redux User:", user);
   console.log("Resolved userId from Redux:", userId);
 
-  useEffect(() => {
+  
+
+
+
+  const fetchPosts = useCallback(async ()=>{
     if (!userId) {
       console.log("User ID not available yet. Skipping API call.");
       return;
@@ -37,13 +42,25 @@ const Following = () => {
         setLoading(false);
       });
   }, [userId]);
+  
+
+  useEffect(() => {
+    fetchPosts();
+},[fetchPosts])
+  
 
   console.log("Loading:", loading);
   console.log("Posts:", posts);
   console.log("Error:", error);
 
   return (
-    <Container maxWidth={false} sx={{ pt: '93px', paddingBottom: '45px'}}>
+    <Container maxWidth={false} 
+    disableGutters
+    sx={{ 
+      width: '98%',
+      pt: '93px', 
+      paddingBottom: '45px'
+      }}>
 
       {loading ? (
         <Box
@@ -64,7 +81,7 @@ const Following = () => {
         <Grid container spacing={2}>
           {posts.map((post) => (
             <Grid item xs={12} sm={8} md={4} key={post._id}>
-              <PostCard post={post} />
+              <PostCard post={post} fetchPosts={fetchPosts} />
             </Grid>
           ))}
         </Grid>
