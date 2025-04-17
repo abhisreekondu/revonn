@@ -37,8 +37,8 @@ const Explore = () => {
       ) : (
         <Grid container spacing={1} sx={{ padding: 0, margin: 0 }}>
           {posts.length === 0 ? (
-            <Typography variant="h6" align="center" sx={{ width: "100%" }}>
-              No reels from followed users are available.
+            <Typography variant="h6" align="center" sx={{ width: "100%" ,paddingTop:'50px'}}>
+              No posts from any user are available.
             </Typography>
           ) : (
             posts.map((item) => (

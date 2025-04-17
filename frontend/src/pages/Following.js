@@ -74,9 +74,9 @@ const Following = () => {
           <CircularProgress size={50} />
         </Box>
       ) : error ? (
-        <Typography variant="h6" color="error" align="center">{error}</Typography>
+        <Typography variant="h6" color="error" align="center" sx={{paddingTop:'50px'}}>{error}</Typography>
       ) : posts.length === 0 ? (
-        <Typography align="center">No posts from followed users.</Typography>
+        <Typography align="center" sx={{paddingTop:'50px'}}>No posts from followed users.</Typography>
       ) : (
         <Grid container spacing={2}>
           {posts.map((post) => (

@@ -54,7 +54,7 @@ const fetchPosts = useCallback(async ()=>{
       ) :
       posts.length === 0 ? 
       (
-        <Typography  align="center">No reels from followed users.</Typography>
+        <Typography  align="center" sx={{paddingTop:'50px'}}>No reels from followed users</Typography>
       ) : (
         <Grid container spacing={2}>
           {posts.map((post) => (

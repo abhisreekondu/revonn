@@ -13,7 +13,7 @@ const AboutAccountDialog = ({ open, onClose, user }) => {
 console.log("From account Dialog:",user)
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogTitle>About this account</DialogTitle>
+      <DialogTitle sx={{color:"red"}}>About this account</DialogTitle>
       <DialogContent>
         <Box display="flex" alignItems="center" mb={2}>
           <Avatar src={user.profilePic} sx={{ width: 60, height: 60, mr: 2 }} />
