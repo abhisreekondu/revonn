@@ -47,9 +47,9 @@ const AllUsersPage = () => {
   return (
     <Box sx={{ p: 2 }}>
       {users.length === 0 ? (
-        <Typography>No users found</Typography>
+        <Typography  sx={{paddingTop:'50px'}}>No users found</Typography>
       ) : (
-        <List>
+        <List sx={{paddingTop:'50px'}} >
           {users.map((user) => (
             <ListItem
               key={user._id}
@@ -59,6 +59,7 @@ const AllUsersPage = () => {
                 alignItems: 'center',
                 borderBottom: '1px solid #ddd',
                 py: 1,
+                
               }}
             >
               <Typography variant="body1">{user.username}</Typography>
