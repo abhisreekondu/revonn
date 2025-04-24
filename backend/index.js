@@ -15,6 +15,7 @@ const deletecommentRouute=require("./routes/deletecommentRoute")
 const report=require("./routes/report")
 const savedposts=require("./routes/savedpostsRoute")
 const saveToggle=require("./routes/savetoggleroute")
+const profileEditRoute=require("./routes/profileEditRoute")
 const app = express();
 
 
@@ -39,6 +40,7 @@ app.use("/revonn",report)
 app.use("/revonn/deletecomment",deletecommentRouute)
 app.use("/revonn/savedposts",savedposts)
 app.use("/revonn/posts/save",saveToggle)
+app.use("/revonn/editprofile",profileEditRoute)
 
 
 // MongoDB connection
