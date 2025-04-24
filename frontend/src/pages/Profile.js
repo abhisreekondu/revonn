@@ -17,9 +17,12 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
+
+  const navigate = useNavigate();
+
   const { userId } = useParams();
   const currentUser = useSelector((state) => state.user.details);
   const currentUserId = currentUser?._id;
@@ -115,10 +118,26 @@ useEffect(() => {
       <MoreVertIcon />
     </IconButton>
     <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
+  {currentUserId === userId ? (
+    // Own Profile Menu
+    <MenuItem
+      onClick={() => {
+        handleMenuClose();
+        navigate("/settings"); // or `/user/settings`, based on your route
+      }}
+    >
+      Settings
+    </MenuItem>
+  ) : (
+    // Other User Profile Menu
+    <>
       <MenuItem onClick={handleMenuClose}>Report</MenuItem>
       <MenuItem onClick={handleMenuClose}>Block</MenuItem>
       <MenuItem onClick={handleMenuClose}>Share Profile</MenuItem>
-    </Menu>
+    </>
+  )}
+</Menu>
+
   </Box>
 
   {/* Profile content */}
