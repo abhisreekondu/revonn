@@ -100,15 +100,14 @@ useEffect(() => {
 
   return (
     <Container
-  maxWidth={false}
-  disableGutters
-  sx={{
-    width: '98%',
-    overflowX: 'hidden',
-    pt: '50px',
-    pb: '40px',
-  }}
->
+    maxWidth="sm"
+    disableGutters
+    sx={{
+      pt: '50px',
+      pb: '40px',
+      minHeight: '100vh',
+    }}
+  >
 
       {/* Profile Header */}
       <Box position="relative" p={2}>
@@ -141,7 +140,11 @@ useEffect(() => {
   </Box>
 
   {/* Profile content */}
-  <Box display="flex" alignItems="center" mt={1}>
+  <Box
+  sx={{
+    display: "flex",
+  }}
+>
     <Avatar
       src={user.profilePic}
       alt={user.username}

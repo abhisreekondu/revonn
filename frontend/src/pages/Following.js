@@ -16,10 +16,6 @@ const Following = () => {
   console.log("Redux User:", user);
   console.log("Resolved userId from Redux:", userId);
 
-  
-
-
-
   const fetchPosts = useCallback(async ()=>{
     if (!userId) {
       console.log("User ID not available yet. Skipping API call.");
@@ -78,13 +74,25 @@ const Following = () => {
       ) : posts.length === 0 ? (
         <Typography align="center" sx={{paddingTop:'50px'}}>No posts from followed users.</Typography>
       ) : (
-        <Grid container spacing={2}>
-          {posts.map((post) => (
+        <Grid container spacing={2} justifyContent="center">
+        {posts.length === 1 ? (
+          <Grid item xs={12}>
+            <Box display="flex" justifyContent="center">
+              <Box width={{ xs: '100%', sm: '80%', md: '60%' }}>
+                <PostCard post={posts[0]} fetchPosts={fetchPosts} />
+              </Box>
+            </Box>
+          </Grid>
+        ) : (
+          posts.map((post) => (
             <Grid item xs={12} sm={8} md={4} key={post._id}>
               <PostCard post={post} fetchPosts={fetchPosts} />
             </Grid>
-          ))}
-        </Grid>
+          ))
+        )}
+      </Grid>
+      
+      
       )}
     </Container>
   );
