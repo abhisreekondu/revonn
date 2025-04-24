@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { Toolbar, Typography, IconButton, Box, Menu, MenuItem } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useNavigate } from 'react-router-dom';
+import SmsOutlinedIcon from '@mui/icons-material/SmsOutlined'; 
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -61,7 +61,7 @@ const Header = () => {
       <NotificationsIcon />
     </IconButton>
     <IconButton size="large">
-      <MoreHorizIcon />
+      <SmsOutlinedIcon />
     </IconButton>
   </Box>
 </Toolbar>
