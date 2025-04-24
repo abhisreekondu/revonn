@@ -27,7 +27,7 @@ const PostCard = ({ post,fetchPosts }) => {
     Array.isArray(post.likes) && post.likes.includes(currentUserId)
   );
   const [likesCount, setLikesCount] = useState(post.likes.length);
-
+console.log(post)
   const handleLikeToggle = async () => {
     try {
       const res = await axios.put(
@@ -46,8 +46,10 @@ const PostCard = ({ post,fetchPosts }) => {
       console.error("Error toggling like:", err);
     }
   };
-
+  const user = typeof post.userId === "object" ? post.userId : post;
   return (
+    
+    
     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
       <Card sx={{ width: '100%', marginBottom: 2 }}>
         {/* User Info */}
@@ -60,16 +62,18 @@ const PostCard = ({ post,fetchPosts }) => {
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Avatar
-              src={post.userId.profilePic}
-              alt={post.userId.username}
+
+              src={user.profilePic}
+              alt={user.username}
               sx={{ width: 40, height: 40, marginRight: 1 }}
             />
             <Box>
+           
               <Typography variant="subtitle1" fontWeight="bold">
-                {post.userId.username}
+                {user.username}
               </Typography>
               <Typography variant="caption" color="text.secondary">
-                {post.userId.location}
+                {user.location}
               </Typography>
             </Box>
           </Box>

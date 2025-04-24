@@ -9,7 +9,8 @@ const UserSchema=new mongoose.Schema(
     location: { type: String, required: true }, 
     bio: { type: String, default: "" },
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: "Users" }],
- 
+    savedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Posts" }],
+
   }, { timestamps: true }
 )
 

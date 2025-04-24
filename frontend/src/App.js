@@ -11,7 +11,8 @@ import UploadPost from "./pages/UploadPost";
 import { Routes,Route} from "react-router-dom";
 import Profile from "./pages/Profile";
 import AllUsersPage from "./pages/Allusers";
-
+import UserSettings from "./pages/UserSettings";
+import SavedPostsPage from "./pages/SavedPosts";
 const App = () => {
   const dispatch = useDispatch();
 
@@ -61,7 +62,7 @@ const App = () => {
         overflowX: 'hidden'
       }}
     >
-      <Header /> {/* Fixed at the top */}
+       <Header /> {/*Fixed at the top*/} 
       
 
       {/* Main content takes the available vertical space and scrolls if needed */}
@@ -72,6 +73,8 @@ const App = () => {
           <Route path="/upload-reel" element={<UploadReel />} />
           <Route path="/allusers" element={<AllUsersPage/>}/> 
           <Route path="/profile/:userId" element={<Profile />} />
+          <Route path="/settings" element={<UserSettings />} />
+         <Route path="/saved" element={<SavedPostsPage/>}/>
 
         </Routes>
       </Box>
